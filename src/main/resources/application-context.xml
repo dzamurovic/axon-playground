@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:axon="http://www.axonframework.org/schema/core"
+       xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-                           http://www.axonframework.org/schema/core http://www.axonframework.org/schema/axon-core-2.0.xsd">
+                           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
+    <context:annotation-config/>
+
+    <!--
     <axon:command-bus id="commandBus"/>
     <axon:event-bus id="eventBus"/>
     <axon:annotation-config command-bus="commandBus"
@@ -20,31 +23,6 @@
                                     command-bus="commandBus"/>
 
     <axon:filesystem-event-store id="eventStore" base-dir="events"/>
-
-    <bean id="invoiceStore" class="playground.Repository"/>
-
-    <bean id="commandGateway" class="org.axonframework.commandhandling.gateway.CommandGatewayFactoryBean">
-        <property name="commandBus" ref="commandBus"/>
-    </bean>
-
-    <bean class="playground.command.InvoiceCommandDispatcher">
-        <constructor-arg ref="commandGateway"/>
-        <constructor-arg ref="eventBus"/>
-        <constructor-arg ref="invoiceRepository"/>
-    </bean>
-
-    <bean id="invoiceQueue" class="java.util.concurrent.ArrayBlockingQueue">
-        <constructor-arg value="1000"/>
-    </bean>
-
-    <bean class="playground.event.EventQueueRegistry">
-        <constructor-arg ref="invoiceQueue"/>
-    </bean>
-
-    <bean class="playground.command.InvoiceCommandHandler">
-        <constructor-arg ref="eventBus"/>
-    </bean>
-
-    <bean class="playground.event.InvoiceEventHandler"></bean>
+    -->
 
 </beans>
